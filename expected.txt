@@ -1,0 +1,18 @@
+true true
+Hello, I am Pavel and I am 22.
+Hello, I am Hana and I am 25.
+Hello, I am Jindra and I am 22.
+Is Jindra ready for his final Exam? false
+{ course: 'IZP', score: 55, passed: true }
+{ course: 'IUS', score: 55, passed: true }
+{ course: 'IAL', score: 55, passed: true }
+{ course: 'IPK', score: 55, passed: true }
+{ course: 'ISA', score: 55, passed: true }
+{ course: 'I1C', score: 55, passed: true }
+{ course: 'I2C', score: 55, passed: true }
+{ course: 'TIN', score: 55, passed: true }
+{ course: 'PDS', score: 55, passed: true }
+{ course: 'WAP', score: 55, passed: true }
+Is Jindra now ready for his final Exam? true
+true
+Hello, I am Jindra and I am 26. I graduated university.

@@ -3,7 +3,17 @@ set -e
 
 if [ "$1" = "install" ]; then
   echo "No dependencies needed."
+  exit 0
 fi
 
-echo "Running tests..."
+echo "Running example output comparison..."
+
+if diff -u expected.txt <(node example.mjs); then
+  echo "Example output matches expected output."
+else
+  echo "Example output DOES NOT match expected output!"
+  exit 1
+fi
+
+echo "Running my tests..."
 node tests.mjs

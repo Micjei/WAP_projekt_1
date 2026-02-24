@@ -21,13 +21,38 @@ export function Person(name, age) {
   this.age = age;
 }
 
+/**
+ * Represents a student.
+ * Extends {@link Person}.
+ *
+ * @constructor
+ * @param {string} name - The student's name.
+ * @param {number} age - The student's age.
+ */
 export function Student(name, age) {
   Person.call(this, name, age);
 
+  /**
+   * List of enrolled courses.
+   * @type {string[]}
+   */
   this.courses = [];
+
+  /**
+   * Set of successfully passed courses (unique).
+   * @type {Set<string>}
+   */
   this.passedCourses = new Set();
 }
 
+/**
+ * Represents a university alumni.
+ * Extends {@link Person}.
+ *
+ * @constructor
+ * @param {string} name - The alumni's name.
+ * @param {number} age - The alumni's age.
+ */
 export function Alumni(name, age) {
   Person.call(this, name, age);
 }
@@ -40,14 +65,30 @@ Alumni.prototype.constructor = Alumni;
 
 // Person methods ----------------------------------------------------------------------------------------
 
+/**
+ * Introduces the person.
+ *
+ * @returns {string} Formatted introduction string.
+ */
 Person.prototype.introduce = function () {
   return `Hello, I am ${this.name} and I am ${this.age}.`;
 };
 
+/**
+ * Increments the person's age by one year.
+ *
+ * @returns {void}
+ */
 Person.prototype.celebrateBirthday = function () {
   this.age += 1;
 };
 
+/**
+ * Converts a Person into a Student by changing its prototype.
+ *
+ * @throws {Error} If the person is already a student.
+ * @returns {void}
+ */
 Person.prototype.goToUniversity = function () {
   if (this instanceof Student) throw new Error("Already a student");
   Student.call(this, this.name, this.age);
@@ -56,19 +97,54 @@ Person.prototype.goToUniversity = function () {
 
 // Student methods ----------------------------------------------------------------------------------------
 
+/**
+ * Enrolls the student into a course.
+ *
+ * @param {string} course - The name of the course.
+ * @returns {void}
+ */
 Student.prototype.enroll = function (course) {
   this.courses.push(course);
 };
 
+/**
+ * Assigns a study results provider.
+ * If called multiple times, the previous provider is replaced.
+ *
+ * The provider must implement a next() method returning a Promise resolving to:
+ * {
+ *   value: { course: string, score: number, passed: boolean },
+ *   done: boolean
+ * }
+ *
+ * @param {{ next: function(): Promise<{value: object, done: boolean}> }} provider
+ * @returns {void}
+ */
 Student.prototype.assignStudyResultsProvider = function (provider) {
   this.studyResultsProvider = provider;
 };
 
+/**
+ * Determines whether the student is ready for the final exam.
+ *
+ * A student is ready if at least 10 unique courses
+ * have been successfully passed.
+ *
+ * @returns {boolean} True if ready, otherwise false.
+ */
 Student.prototype.readyForFinalExam = function () {
   if (this.passedCourses.size >= 10) return true;
   return false;
 };
 
+/**
+ * Attempts to pass the final exam.
+ *
+ * If the student is ready, they become an Alumni
+ * by changing the prototype and the method returns true.
+ *
+ * @returns {boolean} True if successful, otherwise false.
+ */
 Student.prototype.passFinalExam = function () {
   if (this.readyForFinalExam()) {
     Alumni.call(this, this.name, this.age);
@@ -78,6 +154,16 @@ Student.prototype.passFinalExam = function () {
   return false;
 };
 
+/**
+ * Asynchronous generator that yields study results.
+ *
+ * Results for non-enrolled courses are ignored.
+ * Successfully passed courses are recorded internally.
+ *
+ * @async
+ * @generator
+ * @yields {{course: string, score: number, passed: boolean}}
+ */
 Student.prototype.goToExam = async function* () {
   if (!this.studyResultsProvider) return;
 
@@ -94,6 +180,12 @@ Student.prototype.goToExam = async function* () {
 
 // Alumni method ----------------------------------------------------------------------------------------
 
+/**
+ * Introduces the alumni.
+ * Extends the base Person introduction by adding graduation text.
+ *
+ * @returns {string} Formatted introduction string including graduation message.
+ */
 Alumni.prototype.introduce = function () {
   const baseText = Person.prototype.introduce.call(this);
   return baseText + " I graduated university.";

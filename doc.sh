@@ -9,6 +9,6 @@ fi
 
 echo "Generating documentation..."
 
-npx jsdoc students.mjs -d docs
+npx jsdoc -c jsdoc.json
 
 echo "Documentation generated in ./docs"

@@ -8,12 +8,13 @@ Testováno s Node.js **v22.13.1**
 
 Po rozbalení archivu by se měly v kořenovém adresáři nacházet následující soubory:
 
-- students.mjs – implementace knihovny (Person / Student / Alumni)
-- tests.mjs – vlastní testy (node:test)
-- ukazka.mjs – ukázkový skript pro porovnání výstupu
-- expected.txt – vzorový výstup pro ukazka.mjs
-- test.sh – skript pro spuštění testů
-- doc.sh – skript pro generování dokumentace (JSDoc)
+- `students.mjs` – implementace knihovny (Person / Student / Alumni)
+- `tests.mjs` – vlastní testy (node:test)
+- `example.mjs` – ukázkový skript pro porovnání výstupu
+- `expected.txt` – vzorový výstup pro `example.mjs`
+- `test.sh` – skript pro spuštění testů
+- `doc.sh` – skript pro generování dokumentace (JSDoc)
+- `jsdoc.json` – konfigurační soubor pro JSDoc
 
 ---
 
@@ -32,8 +33,9 @@ chmod +x test.sh doc.sh
 ```
 
 Skript provede:
-- porovnání výstupu ukazka.mjs s expected.txt
-- spuštění vlastních testů (tests.mjs)
+
+- porovnání výstupu `example.mjs` s `expected.txt`
+- spuštění vlastních testů (`tests.mjs`)
 
 Pokud je vše správně implementováno, skript skončí bez chyby.
 
@@ -41,7 +43,7 @@ Pokud je vše správně implementováno, skript skončí bez chyby.
 
 ## Generování dokumentace
 
-Dokumentace je generována z JSDoc komentářů ve students.mjs.
+Dokumentace je generována z JSDoc komentářů ve `students.mjs` pomocí konfiguračního souboru `jsdoc.json`.
 
 ### Varianta A – bez instalace závislostí (doporučeno)
 
@@ -49,7 +51,7 @@ Dokumentace je generována z JSDoc komentářů ve students.mjs.
 ./doc.sh
 ```
 
-Skript použije npx jsdoc a vytvoří složku:
+Skript použije `npx jsdoc -c jsdoc.json` a vytvoří složku:
 
 ```
 docs/
@@ -82,5 +84,6 @@ Poté dokumentaci vygenerujete:
 ## Poznámky
 
 - Výstupy jsou porovnávány na přesnou shodu (včetně mezer a koncových znaků řádků).
-- Testy jsou implementovány pomocí vestavěného modulu node:test.
-- Projekt využívá ES moduly (.mjs).
+- Testy jsou implementovány pomocí vestavěného modulu `node:test`.
+- Projekt využívá ES moduly (`.mjs`).
+- Dokumentace je generována pomocí JSDoc 4.x.

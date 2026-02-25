@@ -1,0 +1,22 @@
+# Node modules
+node_modules/
+
+# Generated documentation
+docs/
+
+# Build / distribution folders
+.dist/
+dist/
+
+# jsons
+*.json
+
+# OS / editor files
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
+
+# Logs
+*.log

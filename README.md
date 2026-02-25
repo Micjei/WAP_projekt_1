@@ -55,12 +55,6 @@ Skript použije `npx jsdoc -c jsdoc.json` a vytvoří složku:
 docs/
 ```
 
-Dokumentaci můžete otevřít v prohlížeči:
-
-```
-docs/index.html
-```
-
 ---
 
 ### Varianta B – instalace JSDoc lokálně
@@ -78,3 +72,9 @@ Poté dokumentaci vygenerujete obdobně jako u varianty A:
 ```
 
 ---
+
+Dokumentaci můžete otevřít v prohlížeči:
+
+```
+docs/index.html
+```

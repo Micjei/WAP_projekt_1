@@ -8,8 +8,9 @@ docs/
 .dist/
 dist/
 
-# jsons
-*.json
+# package
+package-lock.json
+package.json
 
 # OS / editor files
 .DS_Store

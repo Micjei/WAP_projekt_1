@@ -1,0 +1,9 @@
+{
+  "source": {
+    "include": ["students.mjs"],
+    "includePattern": ".+\\.mjs$"
+  },
+  "opts": {
+    "destination": "docs"
+  }
+}

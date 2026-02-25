@@ -20,7 +20,7 @@ Po rozbalení archivu by se měly v kořenovém adresáři nacházet následují
 
 ## Spuštění testů
 
-### 1) Nastavení spustitelnosti (jen jednou)
+### 1) Nastavení spustitelnosti
 
 ```bash
 chmod +x test.sh doc.sh
@@ -37,15 +37,13 @@ Skript provede:
 - porovnání výstupu `example.mjs` s `expected.txt`
 - spuštění vlastních testů (`tests.mjs`)
 
-Pokud je vše správně implementováno, skript skončí bez chyby.
-
 ---
 
 ## Generování dokumentace
 
 Dokumentace je generována z JSDoc komentářů ve `students.mjs` pomocí konfiguračního souboru `jsdoc.json`.
 
-### Varianta A – bez instalace závislostí (doporučeno)
+### Varianta A – bez instalace závislostí
 
 ```bash
 ./doc.sh
@@ -57,7 +55,7 @@ Skript použije `npx jsdoc -c jsdoc.json` a vytvoří složku:
 docs/
 ```
 
-Dokumentaci otevřete v prohlížeči:
+Dokumentaci můžete otevřít v prohlížeči:
 
 ```
 docs/index.html
@@ -67,23 +65,16 @@ docs/index.html
 
 ### Varianta B – instalace JSDoc lokálně
 
-Pokud chcete JSDoc nainstalovat jako dev dependency:
+Pokud chcete JSDoc nainstalovat lokálně jako dev dependency:
 
 ```bash
 ./doc.sh install
 ```
 
-Poté dokumentaci vygenerujete:
+Poté dokumentaci vygenerujete obdobně jako u varianty A:
 
 ```bash
 ./doc.sh
 ```
 
 ---
-
-## Poznámky
-
-- Výstupy jsou porovnávány na přesnou shodu (včetně mezer a koncových znaků řádků).
-- Testy jsou implementovány pomocí vestavěného modulu `node:test`.
-- Projekt využívá ES moduly (`.mjs`).
-- Dokumentace je generována pomocí JSDoc 4.x.

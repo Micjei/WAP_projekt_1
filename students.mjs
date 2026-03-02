@@ -29,7 +29,7 @@ export function Person(name, age) {
  * @param {string} name - The student's name.
  * @param {number} age - The student's age.
  */
-export function Student(name, age) {
+function Student(name, age) {
   Person.call(this, name, age);
 
   /**
@@ -53,7 +53,7 @@ export function Student(name, age) {
  * @param {string} name - The alumni's name.
  * @param {number} age - The alumni's age.
  */
-export function Alumni(name, age) {
+function Alumni(name, age) {
   Person.call(this, name, age);
 }
 

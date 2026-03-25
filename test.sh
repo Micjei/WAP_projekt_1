@@ -17,3 +17,4 @@ fi
 
 echo "Running my tests..."
 node tests.mjs
+echo "All tests passed!"

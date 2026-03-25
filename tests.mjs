@@ -93,7 +93,6 @@ describe("Student", () => {
     assert.deepEqual(p.courses, enrolled);
   });
 
-  // možná zbytečný test
   test("enroll() vyhodí chybu pokud nejsem student", () => {
     const p = new Person("Hana", 25);
 

@@ -74,11 +74,6 @@ describe("Person", () => {
     //assert.equal(true, p instanceof Student);
   });
 
-  test("goToUniversity() 2x - chyba", () => {
-    const p = makeStudent();
-    assert.throws(() => p.goToUniversity(), Error);
-  });
-
   test("goToUniversity() je instancí Student i Person", () => {
     const p = makeStudent();
     //assert.equal(true, p instanceof Student);
@@ -87,6 +82,11 @@ describe("Person", () => {
 });
 
 describe("Student", () => {
+  test("goToUniversity() 2x - chyba, již jsem studentem na univerzitě", () => {
+    const p = makeStudent();
+    assert.throws(() => p.goToUniversity(), Error);
+  });
+
   test("enroll() přidá více kurzů", () => {
     const p = makeStudent();
     enrollMany(p, enrolled);
@@ -265,7 +265,7 @@ describe("Student", () => {
 });
 
 describe("Alumni", () => {
-  test("Alumni: passFinalExam() jsem alumni", async () => {
+  test("passFinalExam() jsem alumni", async () => {
     const p = makeStudent();
     enrollMany(p, enrolled);
 
@@ -337,5 +337,23 @@ describe("Alumni", () => {
 
     assert.throws(() => p.passFinalExam(), TypeError);
     assert.throws(() => p.readyForFinalExam(), TypeError);
+  });
+
+  test("goToUniversity() jsem alumni - chyba, mám už odstudováno", () => {
+    const p = makeStudent();
+    enrollMany(p, enrolled);
+
+    p.assignStudyResultsProvider(
+      providerFromAttempts(
+        enrolled.map((course) => ({ course, score: 55, passed: true })),
+      ),
+    );
+
+    consumeExam(p).then(() => {
+      assert.equal(true, p.readyForFinalExam());
+      assert.equal(true, p.passFinalExam());
+
+      assert.throws(() => p.goToUniversity(), Error);
+    });
   });
 });

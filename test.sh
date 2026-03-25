@@ -6,15 +6,16 @@ if [ "$1" = "install" ]; then
   exit 0
 fi
 
-echo "Running example output comparison..."
+echo "Running sample example..."
 
 if diff -u expected.txt <(node example.mjs); then
   echo "Example output matches expected output."
 else
-  echo "Example output DOES NOT match expected output!"
+  echo "Example output does not match expected output!"
   exit 1
 fi
 
 echo "Running my tests..."
 node tests.mjs
+
 echo "All tests passed!"

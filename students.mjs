@@ -87,10 +87,12 @@ Person.prototype.celebrateBirthday = function () {
  * Converts a Person into a Student by changing its prototype.
  *
  * @throws {Error} If the person is already a student.
+ * @throws {Error} If the person is already an alumni.
  * @returns {void}
  */
 Person.prototype.goToUniversity = function () {
   if (this instanceof Student) throw new Error("Already a student");
+  if (this instanceof Alumni) throw new Error("Already a alumni");
   Student.call(this, this.name, this.age);
   Object.setPrototypeOf(this, Student.prototype);
 };
